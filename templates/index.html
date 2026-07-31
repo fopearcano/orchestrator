@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Storyline — Timeline Plotter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Storyline home">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span>storyline</span>
+    </a>
+    <div class="project-name">
+      <span class="status-dot"></span>
+      <input value="The Last Signal" aria-label="Project title">
+      <span class="saved">Saved just now</span>
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>
+      </button>
+      <button class="share-btn">Share <span>↗</span></button>
+      <button class="avatar">AM</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <button class="panel-toggle left-toggle" id="leftPanelToggle" aria-label="Hide timelines panel" title="Hide timelines panel">‹</button>
+    <aside class="sidebar">
+      <section>
+        <div class="section-head"><span>TIMELINES</span><span class="count" id="timelineCount">3</span></div>
+        <div id="timelineList"></div>
+        <button class="add-row" id="addTimeline"><span>＋</span> Add timeline</button>
+      </section>
+      <section class="layers-section">
+        <div class="section-head"><span>LAYERS</span></div>
+        <label class="layer-row"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em>6</em></label>
+        <label class="layer-row"><span class="eye">◉</span><span class="layer-icon">T</span>Notes <em id="noteCount">3</em></label>
+        <label class="layer-row"><span class="eye">◉</span><span class="layer-icon">⌗</span>Grid</label>
+      </section>
+      <div class="sidebar-footer">
+        <span>Canvas</span><strong>∞ × ∞</strong>
+        <div class="mini-map"><span class="mini-path a"></span><span class="mini-path b"></span><span class="mini-view"></span></div>
+      </div>
+    </aside>
+
+    <section class="canvas-shell" id="canvasShell">
+      <div class="floating-tools">
+        <button class="tool active" data-tool="select" title="Select"><svg viewBox="0 0 24 24"><path d="m6 3 12 9-7 1-3 6z"/></svg></button>
+        <button class="tool" data-tool="event" title="Add event"><svg viewBox="0 0 24 24"><path d="M12 4v16M7 8h10M8 17h8"/></svg></button>
+        <button class="tool" data-tool="note" title="Add note"><b>T</b></button>
+        <span></span>
+        <button class="tool" data-tool="pan" title="Pan"><svg viewBox="0 0 24 24"><path d="M8 11V7a1.5 1.5 0 0 1 3 0v3-5a1.5 1.5 0 0 1 3 0v5-3a1.5 1.5 0 0 1 3 0v4-2a1.5 1.5 0 0 1 3 0v4c0 5-3 8-8 8-3 0-5-2-7-5l-2-3a1.6 1.6 0 0 1 2.5-2z"/></svg></button>
+      </div>
+      <div class="zoom-controls"><button id="zoomOut">−</button><span id="zoomLabel">100%</span><button id="zoomIn">＋</button><button id="fitView">⌗</button></div>
+      <div class="canvas" id="canvas">
+        <div class="world" id="world">
+          <div class="ruler"><span>DAY 01</span><span>DAY 05</span><span>DAY 10</span><span>DAY 15</span><span>DAY 20</span><span>DAY 25</span><span>DAY 30</span><i class="playhead"></i></div>
+          <div class="chapter"><span>ACT I · THE ARRIVAL</span></div>
+          <div id="lines"></div>
+          <div id="events"></div>
+          <div id="notes"></div>
+        </div>
+      </div>
+      <div class="hint"><kbd>Space</kbd> + drag to pan <i></i> Scroll to zoom</div>
+    </section>
+
+    <button class="panel-toggle right-toggle" id="rightPanelToggle" aria-label="Hide inspector panel" title="Hide inspector panel">›</button>
+    <aside class="inspector" id="inspector">
+      <div class="inspector-title"><span id="inspectKind">EVENT</span><button id="closeInspector">×</button></div>
+      <div class="field"><label>Label</label><input id="labelInput" value="First contact"></div>
+      <div class="field"><label>Timeline</label><select id="timelineSelect"><option>Main plot</option><option>Dr. Vale</option><option>Echo signal</option></select></div>
+      <div class="field-grid"><div class="field"><label>Day</label><input id="dayInput" type="number" value="8"></div><div class="field"><label>Time</label><input value="14:30"></div></div>
+      <div class="divider"></div>
+      <div class="subhead">APPEARANCE</div>
+      <div class="field"><label>Color</label><div class="color-field"><input id="colorInput" type="color" value="#e56745"><span>#E56745</span></div></div>
+      <div class="field-grid"><div class="field"><label>Line</label><select id="dashInput"><option>Solid</option><option>Dashed</option><option>Dotted</option></select></div><div class="field"><label>Opacity</label><input id="opacityInput" value="100%"></div></div>
+      <div class="field-grid"><div class="field"><label>Font</label><select><option>Manrope</option><option>Mono</option></select></div><div class="field"><label>Size</label><select><option>13 px</option><option>15 px</option><option>18 px</option></select></div></div>
+      <button class="delete-btn" id="deleteEvent">Delete event</button>
+    </aside>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
