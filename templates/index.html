@@ -51,6 +51,15 @@
     <label class="settings-row"><span>Grid<small>Show canvas grid</small></span><input id="gridToggle" type="checkbox" checked></label>
   </aside>
 
+  <div class="structure-menu" id="structureMenu" hidden>
+    <div class="structure-menu-head"><strong>Structure point</strong><button id="structureMenuClose" aria-label="Close">×</button></div>
+    <label>Label<input id="structureLabelInput"></label>
+    <label>Color<input id="structureColorInput" type="color" value="#e56745"></label>
+    <label>Position<input id="structureTimeInput" type="number"></label>
+    <button id="structurePointApply">Apply changes</button>
+    <button class="danger" id="structurePointDelete">Delete point</button>
+  </div>
+
   <main class="workspace">
     <button class="panel-toggle left-toggle" id="leftPanelToggle" aria-label="Hide timelines panel" title="Hide timelines panel">‹</button>
     <aside class="sidebar">
