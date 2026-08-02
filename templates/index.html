@@ -11,10 +11,10 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="Storyline home">
+    <button class="brand brand-button" id="projectsToggle" aria-label="Open projects">
       <span class="brand-mark"><i></i><i></i><i></i></span>
       <span>storyline</span>
-    </a>
+    </button>
     <div class="project-name">
       <span class="status-dot"></span>
       <input value="The Last Signal" aria-label="Project title">
@@ -24,10 +24,26 @@
       <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
         <svg viewBox="0 0 24 24"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>
       </button>
-      <button class="share-btn">Share <span>↗</span></button>
-      <button class="avatar">AM</button>
+      <button class="icon-btn" id="settingsToggle" aria-label="Open settings" title="Settings">⚙</button>
     </div>
   </header>
+
+  <aside class="projects-drawer" id="projectsDrawer" aria-hidden="true">
+    <div class="drawer-head"><strong>Projects</strong><button id="projectsClose">×</button></div>
+    <button class="primary-action" id="newProject">＋ New project</button>
+    <div class="project-card active"><span class="project-dot"></span><div><strong>The Last Signal</strong><small>Current project</small></div></div>
+    <div class="drawer-label">FILE</div>
+    <button class="drawer-action" id="saveFile">⇩ Save project file</button>
+    <label class="drawer-action file-action">⇧ Open project file<input id="openFile" type="file" accept=".storyline,.json"></label>
+  </aside>
+  <div class="drawer-scrim" id="drawerScrim"></div>
+
+  <aside class="settings-panel" id="settingsPanel" aria-hidden="true">
+    <div class="drawer-head"><strong>Settings</strong><button id="settingsClose">×</button></div>
+    <label class="settings-row"><span>Time scale<small>Labels across the canvas</small></span><select id="timeUnit"><option value="days">Days</option><option value="months">Months</option></select></label>
+    <label class="settings-row"><span>Theme<small>Interface appearance</small></span><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+    <label class="settings-row"><span>Grid<small>Show canvas grid</small></span><input id="gridToggle" type="checkbox" checked></label>
+  </aside>
 
   <main class="workspace">
     <button class="panel-toggle left-toggle" id="leftPanelToggle" aria-label="Hide timelines panel" title="Hide timelines panel">‹</button>
@@ -39,9 +55,9 @@
       </section>
       <section class="layers-section">
         <div class="section-head"><span>LAYERS</span></div>
-        <label class="layer-row"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em>6</em></label>
-        <label class="layer-row"><span class="eye">◉</span><span class="layer-icon">T</span>Notes <em id="noteCount">3</em></label>
-        <label class="layer-row"><span class="eye">◉</span><span class="layer-icon">⌗</span>Grid</label>
+        <button class="layer-row" id="eventsLayer"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em id="eventCount">4</em></button>
+        <button class="layer-row" id="notesLayer"><span class="eye">◉</span><span class="layer-icon">T</span>Notes <em id="noteCount">2</em></button>
+        <button class="layer-row" id="gridLayer"><span class="eye">◉</span><span class="layer-icon">⌗</span>Grid</button>
       </section>
       <div class="sidebar-footer">
         <span>Canvas</span><strong>∞ × ∞</strong>
@@ -60,7 +76,7 @@
       <div class="zoom-controls"><button id="zoomOut">−</button><span id="zoomLabel">100%</span><button id="zoomIn">＋</button><button id="fitView">⌗</button></div>
       <div class="canvas" id="canvas">
         <div class="world" id="world">
-          <div class="ruler"><span>DAY 01</span><span>DAY 05</span><span>DAY 10</span><span>DAY 15</span><span>DAY 20</span><span>DAY 25</span><span>DAY 30</span><i class="playhead"></i></div>
+          <div class="ruler" id="ruler"><i class="playhead"></i></div>
           <div class="chapter"><span>ACT I · THE ARRIVAL</span></div>
           <div id="lines"></div>
           <div id="events"></div>
@@ -80,7 +96,7 @@
       <div class="subhead">APPEARANCE</div>
       <div class="field"><label>Color</label><div class="color-field"><input id="colorInput" type="color" value="#e56745"><span>#E56745</span></div></div>
       <div class="field-grid"><div class="field"><label>Line</label><select id="dashInput"><option>Solid</option><option>Dashed</option><option>Dotted</option></select></div><div class="field"><label>Opacity</label><input id="opacityInput" value="100%"></div></div>
-      <div class="field-grid"><div class="field"><label>Font</label><select><option>Manrope</option><option>Mono</option></select></div><div class="field"><label>Size</label><select><option>13 px</option><option>15 px</option><option>18 px</option></select></div></div>
+      <div class="field-grid"><div class="field"><label>Font</label><select id="fontInput"><option value="Manrope">Manrope</option><option value="DM Mono">Mono</option></select></div><div class="field"><label>Size</label><select id="fontSizeInput"><option value="13">13 px</option><option value="15">15 px</option><option value="18">18 px</option></select></div></div>
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
