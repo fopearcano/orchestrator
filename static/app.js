@@ -32,15 +32,26 @@ function renderTimelines(){
 }
 function openTimelineMenu(i,anchor){const t=timelines[i],menu=$('#timelineMenu');editingTimeline=i;$('#timelineNameInput').value=t.name;$('#timelineColorInput').value=t.color;$('#timelineWidthInput').value=String(t.width);$('#timelineOpacityInput').value=Math.round(t.opacity*100);$('#timelineDashInput').value=t.dash?'dashed':'solid';menu.hidden=false;const row=anchor.closest('.timeline-row');menu.style.top=`${row.offsetTop+row.offsetHeight}px`}
 function closeTimelineMenu(){$('#timelineMenu').hidden=true;editingTimeline=null}
+function calculateEventLayout(){
+  const layout=new Map();let cursor=240;
+  timelines.forEach((timeline,line)=>{
+    timeline.y=cursor;const items=events.filter(e=>e.line===line).sort((a,b)=>a.time-b.time);let cluster=[],deepest=0;
+    const place=()=>{cluster.forEach((event,index)=>{const lane=cluster.length===1?0:Math.floor(index/2),side=cluster.length===1||index%2===0?'right':'left';layout.set(event.id,{lane,side});deepest=Math.max(deepest,lane)});cluster=[]};
+    items.forEach(event=>{if(cluster.length&&Math.abs(event.time-cluster.at(-1).time)*STEP>=190)place();cluster.push(event)});place();
+    timeline.eventDepth=deepest;cursor+=170+deepest*58;
+  });
+  return layout;
+}
 function render(){
   renderRuler();
   $('#eventCount').textContent=events.length;$('#noteCount').textContent=notes.length;
-  const diegeticY=Math.max(...timelines.map(t=>t.y))+190;
+  const eventLayout=calculateEventLayout();
+  const diegeticY=Math.max(...timelines.map(t=>t.y+(t.eventDepth||0)*58))+190;
   $('#diegeticAxis').style.top=`${diegeticY}px`;$('#structurePoints').style.top=`${diegeticY}px`;
   $('#lines').innerHTML=timelines.map(t=>`<div class="line ${t.dash?'dashed':''} ${t.hidden?'is-hidden':''}" style="top:${t.y}px;left:0;width:${WORLD_WIDTH}px;--c:${t.color};--o:${t.opacity};--w:${t.width}px"><div class="line-label" style="left:${ORIGIN-10}px"><span style="background:${t.color}"></span>${t.name}</div><div class="line-stroke"></div></div>`).join('');
   $('#diegeticConnections').setAttribute('viewBox',`0 0 ${WORLD_WIDTH} ${diegeticY+80}`);$('#diegeticConnections').style.height=`${diegeticY+80}px`;
   $('#diegeticConnections').innerHTML=events.filter(e=>e.diegeticTime!==undefined&&timelines[e.line]).map(e=>{const sx=ORIGIN+e.time*STEP,sy=timelines[e.line].y,ex=ORIGIN+e.diegeticTime*STEP,curve=Math.max(70,(diegeticY-sy)*.45);return `<path d="M ${sx} ${sy} C ${sx} ${sy+curve}, ${ex} ${diegeticY-curve}, ${ex} ${diegeticY}" style="--c:${e.color}"/><circle class="diegetic-handle" data-id="${e.id}" cx="${ex}" cy="${diegeticY}" r="7" style="--c:${e.color}"/><circle cx="${sx}" cy="${sy}" r="4" style="--c:${e.color}"/>`}).join('');
-  $('#events').innerHTML=events.map(e=>{const t=timelines[e.line],height=t.y-CHRONO_Y;return `<div class="event ${e.dash?'dashed':''} ${e.id===selected?'selected':''} ${t?.hidden?'is-hidden':''}" data-id="${e.id}" style="left:${ORIGIN+e.time*STEP}px;top:${CHRONO_Y}px;--line-h:${height}px;--c:${e.color};--o:${e.opacity};--fs:${e.size}px;--font:${e.font}"><div class="chrono-dot"></div><div class="event-line"></div><div class="event-label">${e.label}<small>${unitName(e.time)} · ${e.hour}</small></div>${e.id===selected&&e.description?`<div class="event-description">${e.description}</div>`:''}</div>`}).join('');
+  $('#events').innerHTML=events.map(e=>{const t=timelines[e.line],height=t.y-CHRONO_Y,position=eventLayout.get(e.id)||{lane:0,side:'right'},offset=position.lane*58;return `<div class="event side-${position.side} ${e.dash?'dashed':''} ${e.id===selected?'selected':''} ${t?.hidden?'is-hidden':''}" data-id="${e.id}" style="left:${ORIGIN+e.time*STEP}px;top:${CHRONO_Y}px;--line-h:${height}px;--stack-offset:${offset}px;--c:${e.color};--o:${e.opacity};--fs:${e.size}px;--font:${e.font}"><div class="chrono-dot"></div><div class="event-line"></div><div class="event-label">${e.label}<small>${unitName(e.time)} · ${e.hour}</small></div>${e.id===selected&&e.description?`<div class="event-description">${e.description}</div>`:''}</div>`}).join('');
   $('#notes').innerHTML=notes.map((n,i)=>`<div class="note" data-note="${i}" style="left:${n.x}px;top:${n.y}px"><b>${n.text}</b><small>${n.tag}</small></div>`).join('');
   $('#structurePoints').innerHTML=structure.map((p,i)=>`<div class="structure-point" data-index="${i}" style="left:${ORIGIN+p.time*STEP}px;--c:${p.color||customTheme.accent}"><i title="Drag to reposition · Right-click for options"></i><span contenteditable="false" spellcheck="false">${p.label}</span></div>`).join('');
   bindItems();
