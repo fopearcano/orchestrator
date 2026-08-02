@@ -57,7 +57,7 @@
           <label>Name<input id="timelineNameInput"></label>
           <label>Color<input id="timelineColorInput" type="color"></label>
           <div class="timeline-menu-grid">
-            <label>Stroke<select id="timelineWidthInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></label>
+            <label>Stroke<select id="timelineWidthInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option><option value="10">10 px</option><option value="12">12 px</option><option value="16">16 px</option><option value="20">20 px</option><option value="24">24 px</option><option value="30">30 px</option></select></label>
             <label>Opacity<input id="timelineOpacityInput" type="number" min="0" max="100" step="5"></label>
           </div>
           <label>Line style<select id="timelineDashInput"><option value="solid">Solid</option><option value="dashed">Dashed</option></select></label>
@@ -86,12 +86,14 @@
         <div class="world" id="world">
           <div class="ruler" id="ruler"><i class="playhead"></i></div>
           <div class="chapter"><span>ACT I · THE ARRIVAL</span></div>
+          <div class="chronological-label">CHRONOLOGICAL TIMELINE</div>
           <div id="lines"></div>
+          <svg class="diegetic-connections" id="diegeticConnections" aria-label="Diegetic event connections"></svg>
           <div id="events"></div>
           <div id="notes"></div>
+          <div class="diegetic-axis" id="diegeticAxis"><span>DIEGETIC TIMELINE</span></div>
         </div>
       </div>
-      <div class="hint"><kbd>Space</kbd> + drag to pan <i></i> Scroll to zoom</div>
     </section>
 
     <button class="panel-toggle right-toggle" id="rightPanelToggle" aria-label="Hide inspector panel" title="Hide inspector panel">›</button>
@@ -105,6 +107,10 @@
       <div class="field"><label>Color</label><div class="color-field"><input id="colorInput" type="color" value="#e56745"><span>#E56745</span></div></div>
       <div class="field-grid"><div class="field"><label>Line</label><select id="dashInput"><option>Solid</option><option>Dashed</option><option>Dotted</option></select></div><div class="field"><label>Opacity</label><input id="opacityInput" value="100%"></div></div>
       <div class="field-grid"><div class="field"><label>Font</label><select id="fontInput"><option value="Manrope">Manrope</option><option value="DM Mono">Mono</option></select></div><div class="field"><label>Size</label><select id="fontSizeInput"><option value="13">13 px</option><option value="15">15 px</option><option value="18">18 px</option></select></div></div>
+      <div class="divider"></div>
+      <div class="subhead">DIEGETIC CONNECTION</div>
+      <p class="field-help">Connect this event to its perceived position in story time.</p>
+      <button class="diegetic-btn" id="toggleDiegetic">Add diegetic line</button>
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
