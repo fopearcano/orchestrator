@@ -41,7 +41,13 @@
   <aside class="settings-panel" id="settingsPanel" aria-hidden="true">
     <div class="drawer-head"><strong>Settings</strong><button id="settingsClose">×</button></div>
     <label class="settings-row"><span>Time scale<small>Labels across the canvas</small></span><select id="timeUnit"><option value="hours">Hours</option><option value="days">Days</option><option value="months">Months</option></select></label>
-    <label class="settings-row"><span>Theme<small>Interface appearance</small></span><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+    <label class="settings-row"><span>Theme<small>Interface appearance</small></span><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="custom">Custom</option></select></label>
+    <div class="custom-theme" id="customThemeControls" hidden>
+      <label>Canvas<input type="color" id="customBg" value="#f4f2ed"></label>
+      <label>Panels<input type="color" id="customPanel" value="#fbfaf7"></label>
+      <label>Text<input type="color" id="customInk" value="#252724"></label>
+      <label>Accent<input type="color" id="customAccent" value="#e56745"></label>
+    </div>
     <label class="settings-row"><span>Grid<small>Show canvas grid</small></span><input id="gridToggle" type="checkbox" checked></label>
   </aside>
 
