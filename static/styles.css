@@ -36,3 +36,13 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 .world{width:100000px;height:4000px}.ruler{left:0;width:100000px;overflow:visible}.ruler span{position:absolute;top:0;white-space:nowrap}.ruler span:after{margin-left:1px}.chapter{left:50000px;width:1100px}.line-label{white-space:nowrap}.event-label{font-family:var(--font,Manrope);font-size:var(--fs,13px)}
 .world.no-grid{background-image:none}.is-hidden,.layer-hidden,body.hide-events .event,body.hide-notes .note{display:none!important}
 .layer-row{width:100%;border:0;background:transparent;color:var(--ink);font-family:Manrope;cursor:pointer}.layer-row.off{color:var(--muted)}.visibility,.more{border:0;background:none;color:var(--muted);cursor:pointer;padding:4px}.visibility{font-size:9px}
+
+/* Scrollable panels and timeline options popover */
+.sidebar,.inspector{overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.sidebar::-webkit-scrollbar,.inspector::-webkit-scrollbar{width:7px}.sidebar::-webkit-scrollbar-thumb,.inspector::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+.inspector{padding-bottom:18px}.inspector-title{position:sticky;top:0;z-index:2;background:var(--panel)}
+.delete-btn{position:static;width:100%;margin-top:24px;flex:none}
+.timeline-menu[hidden]{display:none}.timeline-menu{position:absolute;z-index:15;left:12px;right:12px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow)}
+.timeline-menu-head{display:flex;align-items:center;margin-bottom:12px}.timeline-menu-head strong{font-size:11px}.timeline-menu-head button{margin-left:auto;border:0;background:none;color:var(--muted);font-size:18px;cursor:pointer}
+.timeline-menu label{display:block;margin-top:10px;color:var(--muted);font-size:9px;font-weight:700;letter-spacing:.5px}.timeline-menu input,.timeline-menu select{display:block;width:100%;height:32px;margin-top:5px;padding:0 8px;border:1px solid var(--line);border-radius:5px;background:var(--bg);color:var(--ink);font:11px Manrope}.timeline-menu input[type=color]{padding:4px}
+.timeline-menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.timeline-save,.timeline-delete{width:100%;height:33px;margin-top:13px;border-radius:5px;font:600 10px Manrope;cursor:pointer}.timeline-save{border:0;background:var(--ink);color:var(--panel)}.timeline-delete{margin-top:7px;border:1px solid #d8aaa0;background:transparent;color:#bc5d48}

@@ -40,7 +40,7 @@
 
   <aside class="settings-panel" id="settingsPanel" aria-hidden="true">
     <div class="drawer-head"><strong>Settings</strong><button id="settingsClose">×</button></div>
-    <label class="settings-row"><span>Time scale<small>Labels across the canvas</small></span><select id="timeUnit"><option value="days">Days</option><option value="months">Months</option></select></label>
+    <label class="settings-row"><span>Time scale<small>Labels across the canvas</small></span><select id="timeUnit"><option value="hours">Hours</option><option value="days">Days</option><option value="months">Months</option></select></label>
     <label class="settings-row"><span>Theme<small>Interface appearance</small></span><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option></select></label>
     <label class="settings-row"><span>Grid<small>Show canvas grid</small></span><input id="gridToggle" type="checkbox" checked></label>
   </aside>
@@ -52,6 +52,18 @@
         <div class="section-head"><span>TIMELINES</span><span class="count" id="timelineCount">3</span></div>
         <div id="timelineList"></div>
         <button class="add-row" id="addTimeline"><span>＋</span> Add timeline</button>
+        <div class="timeline-menu" id="timelineMenu" hidden>
+          <div class="timeline-menu-head"><strong>Edit timeline</strong><button id="timelineMenuClose" aria-label="Close">×</button></div>
+          <label>Name<input id="timelineNameInput"></label>
+          <label>Color<input id="timelineColorInput" type="color"></label>
+          <div class="timeline-menu-grid">
+            <label>Stroke<select id="timelineWidthInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></label>
+            <label>Opacity<input id="timelineOpacityInput" type="number" min="0" max="100" step="5"></label>
+          </div>
+          <label>Line style<select id="timelineDashInput"><option value="solid">Solid</option><option value="dashed">Dashed</option></select></label>
+          <button class="timeline-save" id="timelineSave">Apply changes</button>
+          <button class="timeline-delete" id="timelineDelete">Delete timeline</button>
+        </div>
       </section>
       <section class="layers-section">
         <div class="section-head"><span>LAYERS</span></div>
@@ -59,10 +71,6 @@
         <button class="layer-row" id="notesLayer"><span class="eye">◉</span><span class="layer-icon">T</span>Notes <em id="noteCount">2</em></button>
         <button class="layer-row" id="gridLayer"><span class="eye">◉</span><span class="layer-icon">⌗</span>Grid</button>
       </section>
-      <div class="sidebar-footer">
-        <span>Canvas</span><strong>∞ × ∞</strong>
-        <div class="mini-map"><span class="mini-path a"></span><span class="mini-path b"></span><span class="mini-view"></span></div>
-      </div>
     </aside>
 
     <section class="canvas-shell" id="canvasShell">
@@ -91,7 +99,7 @@
       <div class="inspector-title"><span id="inspectKind">EVENT</span><button id="closeInspector">×</button></div>
       <div class="field"><label>Label</label><input id="labelInput" value="First contact"></div>
       <div class="field"><label>Timeline</label><select id="timelineSelect"><option>Main plot</option><option>Dr. Vale</option><option>Echo signal</option></select></div>
-      <div class="field-grid"><div class="field"><label>Day</label><input id="dayInput" type="number" value="8"></div><div class="field"><label>Time</label><input value="14:30"></div></div>
+      <div class="field-grid"><div class="field"><label id="positionLabel">Day</label><input id="dayInput" type="number" value="8"></div><div class="field"><label>Time</label><input id="eventTimeInput" type="time" value="14:30"></div></div>
       <div class="divider"></div>
       <div class="subhead">APPEARANCE</div>
       <div class="field"><label>Color</label><div class="color-field"><input id="colorInput" type="color" value="#e56745"><span>#E56745</span></div></div>
