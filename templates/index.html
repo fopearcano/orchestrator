@@ -75,11 +75,12 @@
 
     <section class="canvas-shell" id="canvasShell">
       <div class="floating-tools">
-        <button class="tool active" data-tool="select" title="Select"><svg viewBox="0 0 24 24"><path d="m6 3 12 9-7 1-3 6z"/></svg></button>
+        <button class="toolbar-grip" id="toolbarGrip" aria-label="Move toolbar" title="Drag toolbar">⠿</button>
+        <button class="tool active" data-tool="pan" title="Pan"><svg viewBox="0 0 24 24"><path d="M8 11V7a1.5 1.5 0 0 1 3 0v3-5a1.5 1.5 0 0 1 3 0v5-3a1.5 1.5 0 0 1 3 0v4-2a1.5 1.5 0 0 1 3 0v4c0 5-3 8-8 8-3 0-5-2-7-5l-2-3a1.6 1.6 0 0 1 2.5-2z"/></svg></button>
         <button class="tool" data-tool="event" title="Add event"><svg viewBox="0 0 24 24"><path d="M12 4v16M7 8h10M8 17h8"/></svg></button>
         <button class="tool" data-tool="note" title="Add note"><b>T</b></button>
         <span></span>
-        <button class="tool" data-tool="pan" title="Pan"><svg viewBox="0 0 24 24"><path d="M8 11V7a1.5 1.5 0 0 1 3 0v3-5a1.5 1.5 0 0 1 3 0v5-3a1.5 1.5 0 0 1 3 0v4-2a1.5 1.5 0 0 1 3 0v4c0 5-3 8-8 8-3 0-5-2-7-5l-2-3a1.6 1.6 0 0 1 2.5-2z"/></svg></button>
+        <button class="tool" id="undoButton" title="Undo" aria-label="Undo" disabled>↶</button>
       </div>
       <div class="zoom-controls"><button id="zoomOut">−</button><span id="zoomLabel">100%</span><button id="zoomIn">＋</button><button id="fitView">⌗</button></div>
       <div class="canvas" id="canvas">
@@ -91,6 +92,7 @@
           <div id="events"></div>
           <div id="notes"></div>
           <div class="diegetic-axis" id="diegeticAxis"><span>DIEGETIC TIMELINE</span></div>
+          <div class="structure-points" id="structurePoints"></div>
         </div>
       </div>
     </section>
@@ -110,6 +112,8 @@
       <div class="subhead">DIEGETIC CONNECTION</div>
       <p class="field-help">Connect this event to its perceived position in story time.</p>
       <button class="diegetic-btn" id="toggleDiegetic">Add diegetic line</button>
+      <div class="field"><label>Structure template</label><select id="structureTemplate"><option value="none">None</option><option value="three-act">Three-act structure</option><option value="hero">Hero’s journey</option><option value="save-cat">Save the Cat</option><option value="custom">Custom</option></select></div>
+      <button class="diegetic-btn secondary" id="addStructurePoint">＋ Add structure point</button>
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
