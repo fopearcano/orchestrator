@@ -37,7 +37,7 @@ function calculateEventLayout(){
   const layout=new Map();let cursor=240;
   timelines.forEach((timeline,line)=>{
     timeline.y=cursor;const items=events.filter(e=>e.line===line).sort((a,b)=>a.time-b.time);let cluster=[],deepest=0;
-    const place=()=>{cluster.forEach((event,index)=>{const lane=cluster.length===1?0:Math.floor(index/2),side=cluster.length===1||index%2===0?'right':'left';layout.set(event.id,{lane,side});deepest=Math.max(deepest,lane)});cluster=[]};
+    const place=()=>{cluster.forEach((event,index)=>{const lane=cluster.length===1?0:Math.floor(index/2),side=cluster.length===1?'right':index%2===0?'left':'right';layout.set(event.id,{lane,side});deepest=Math.max(deepest,lane)});cluster=[]};
     items.forEach(event=>{if(cluster.length&&Math.abs(event.time-cluster.at(-1).time)*STEP>=190)place();cluster.push(event)});place();
     timeline.eventDepth=deepest;cursor+=170+deepest*58;
   });
