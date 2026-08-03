@@ -78,3 +78,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Continuous proportional horizontal spread */
 .spread-control[hidden]{display:none}.spread-control{display:flex;align-items:center;gap:7px;width:172px;padding:0 8px;border-left:1px solid var(--line)}.spread-control input{width:120px;accent-color:var(--accent);cursor:ew-resize}.spread-control output{min-width:35px;color:var(--muted);font:9px DM Mono;text-align:right}
+
+/* Persistent editor text styles and centered header icons */
+.top-actions .icon-btn svg{display:block;width:14px;height:14px;margin:auto}.event-label{font-weight:var(--weight,500);font-style:var(--font-style,normal)}.text-style-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}.text-style-controls label{display:flex;align-items:center;gap:7px;height:34px;padding:0 9px;border:1px solid var(--line);border-radius:5px;background:var(--bg);color:var(--ink);font-size:10px;cursor:pointer}.text-style-controls input{accent-color:var(--accent)}.text-style-controls strong{font-size:12px}.text-style-controls em{font:italic 12px Georgia}
