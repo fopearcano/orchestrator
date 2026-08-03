@@ -17,7 +17,7 @@
     </button>
     <div class="project-name">
       <span class="status-dot"></span>
-      <input value="The Last Signal" aria-label="Project title">
+      <input id="projectTitle" value="The Last Signal" aria-label="Project title">
       <span class="saved">Saved just now</span>
     </div>
     <div class="top-actions">
@@ -31,7 +31,7 @@
   <aside class="projects-drawer" id="projectsDrawer" aria-hidden="true">
     <div class="drawer-head"><strong>Projects</strong><button id="projectsClose">×</button></div>
     <button class="primary-action" id="newProject">＋ New project</button>
-    <div class="project-card active"><span class="project-dot"></span><div><strong>The Last Signal</strong><small>Current project</small></div></div>
+    <div class="project-card active"><span class="project-dot"></span><div><strong id="currentProjectName">The Last Signal</strong><small>Current project</small></div></div>
     <div class="drawer-label">FILE</div>
     <button class="drawer-action" id="saveFile">⇩ Save project file</button>
     <label class="drawer-action file-action">⇧ Open project file<input id="openFile" type="file" accept=".storyline,.json"></label>
