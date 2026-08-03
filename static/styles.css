@@ -94,3 +94,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Viewport-safe context menus and visible diegetic labels */
 .structure-menu,.note-menu{max-height:calc(100vh - 16px);overflow-y:auto;overscroll-behavior:contain}.structure-point{width:1px}.structure-point:after{position:absolute;top:5px;left:0;width:1px;height:26px;margin:0}.structure-point span{position:absolute;z-index:2;top:31px;left:0;width:max-content;max-width:180px;transform:translateX(-50%);background:color-mix(in srgb,var(--panel) 88%,transparent);text-shadow:0 1px 1px var(--panel)}
+
+/* Rectangle multi-selection */
+.selection-rectangle[hidden]{display:none}.selection-rectangle{position:absolute;z-index:20;border:1px solid var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--panel) 55%,transparent) inset;pointer-events:none}
