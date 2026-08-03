@@ -20,6 +20,11 @@
       <input id="projectTitle" value="The Last Signal" aria-label="Project title">
       <span class="saved">Saved just now</span>
     </div>
+    <div class="top-layers" aria-label="Canvas layers">
+      <button class="layer-row" id="eventsLayer" title="Show or hide events"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em id="eventCount">4</em></button>
+      <button class="layer-row" id="notesLayer" title="Show or hide notes"><span class="eye">◉</span><span class="layer-icon">T</span>Notes <em id="noteCount">2</em></button>
+      <button class="layer-row" id="gridLayer" title="Show or hide grid"><span class="eye">◉</span><span class="layer-icon">⌗</span>Grid</button>
+    </div>
     <div class="top-actions">
       <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
         <svg viewBox="0 0 24 24"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>
@@ -63,6 +68,15 @@
     <button class="danger" id="structurePointDelete">Delete point</button>
   </div>
 
+  <div class="note-menu" id="noteMenu" hidden>
+    <div class="structure-menu-head"><strong>Edit text</strong><button id="noteMenuClose" aria-label="Close">×</button></div>
+    <label>Text<textarea id="noteTextInput" rows="4"></textarea></label>
+    <div class="timeline-menu-grid"><label>Color<input id="noteColorInput" type="color" value="#545750"></label><label>Size<input id="noteSizeInput" type="number" min="8" max="48" value="12"></label></div>
+    <div class="popover-checks"><label><input id="noteBoldInput" type="checkbox"> Bold</label><label><input id="noteItalicInput" type="checkbox"> Italic</label></div>
+    <button id="noteApply">Apply changes</button>
+    <button class="danger" id="noteDelete">Delete text</button>
+  </div>
+
   <main class="workspace">
     <button class="panel-toggle left-toggle" id="leftPanelToggle" aria-label="Hide timelines panel" title="Hide timelines panel">‹</button>
     <aside class="sidebar">
@@ -85,12 +99,6 @@
           <button class="timeline-save" id="timelineSave">Apply changes</button>
           <button class="timeline-delete" id="timelineDelete">Delete timeline</button>
         </div>
-      </section>
-      <section class="layers-section">
-        <div class="section-head"><span>LAYERS</span></div>
-        <button class="layer-row" id="eventsLayer"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em id="eventCount">4</em></button>
-        <button class="layer-row" id="notesLayer"><span class="eye">◉</span><span class="layer-icon">T</span>Notes <em id="noteCount">2</em></button>
-        <button class="layer-row" id="gridLayer"><span class="eye">◉</span><span class="layer-icon">⌗</span>Grid</button>
       </section>
     </aside>
 
