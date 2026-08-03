@@ -55,6 +55,9 @@
     <div class="structure-menu-head"><strong>Structure point</strong><button id="structureMenuClose" aria-label="Close">×</button></div>
     <label>Label<input id="structureLabelInput"></label>
     <label>Color<input id="structureColorInput" type="color" value="#e56745"></label>
+    <label>Text color<input id="structureTextColorInput" type="color" value="#252724"></label>
+    <label>Text size<input id="structureTextSizeInput" type="number" min="8" max="36" value="10"></label>
+    <div class="popover-checks"><label><input id="structureBoldInput" type="checkbox"> Bold</label><label><input id="structureItalicInput" type="checkbox"> Italic</label></div>
     <label>Position<input id="structureTimeInput" type="number" step="0.01"></label>
     <button id="structurePointApply">Apply changes</button>
     <button class="danger" id="structurePointDelete">Delete point</button>
@@ -76,6 +79,9 @@
             <label>Opacity<input id="timelineOpacityInput" type="number" min="0" max="100" step="5"></label>
           </div>
           <label>Line style<select id="timelineDashInput"><option value="solid">Solid</option><option value="dashed">Dashed</option></select></label>
+          <div class="popover-subhead">NAME STYLE</div>
+          <div class="timeline-menu-grid"><label>Text color<input id="timelineTextColorInput" type="color"></label><label>Text size<input id="timelineTextSizeInput" type="number" min="8" max="36" value="11"></label></div>
+          <div class="popover-checks"><label><input id="timelineBoldInput" type="checkbox"> Bold</label><label><input id="timelineItalicInput" type="checkbox"> Italic</label></div>
           <button class="timeline-save" id="timelineSave">Apply changes</button>
           <button class="timeline-delete" id="timelineDelete">Delete timeline</button>
         </div>
