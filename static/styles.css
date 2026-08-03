@@ -75,3 +75,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Fully colored, box-connected event strokes */
 .event-label{border-color:var(--c);border-left-color:var(--c);box-shadow:0 2px 9px color-mix(in srgb,var(--c) 18%,transparent)}.event-line{background:var(--c)}
+
+/* Continuous proportional horizontal spread */
+.spread-control[hidden]{display:none}.spread-control{display:flex;align-items:center;gap:7px;width:172px;padding:0 8px;border-left:1px solid var(--line)}.spread-control input{width:120px;accent-color:var(--accent);cursor:ew-resize}.spread-control output{min-width:35px;color:var(--muted);font:9px DM Mono;text-align:right}
