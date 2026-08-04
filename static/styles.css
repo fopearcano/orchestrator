@@ -100,3 +100,4 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Diegetic endpoint chronology guides */
 .diegetic-connections .diegetic-chronology-line{stroke:var(--c);stroke-width:2;stroke-dasharray:.1 7;stroke-linecap:round;opacity:.88;vector-effect:non-scaling-stroke}
+.structure-point:before{content:"";position:absolute;z-index:0;left:50%;bottom:0;width:3px;height:var(--guide-height);transform:translateX(-50%);background:radial-gradient(circle,var(--c) 0 1.25px,transparent 1.4px) center bottom/3px 8px repeat-y;opacity:.9;pointer-events:none}.structure-point i{position:relative;z-index:1}
