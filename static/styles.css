@@ -104,3 +104,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Dual horizontal-stretch modes */
 .spread-tool.mode-active{color:var(--panel);background:var(--accent)}
+
+/* Dynamic chronological and diegetic event indexes */
+.event-order{display:flex;align-items:center;justify-content:space-between;gap:18px;min-width:72px;margin-top:5px;font-size:1em;line-height:1}.event-order b{font:700 1em var(--font,Manrope)}.chronological-order{color:#ed3fa5}.diegetic-order{color:#39b86b}
