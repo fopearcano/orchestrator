@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260805-2">
+  <link rel="stylesheet" href="/static/styles.css?v=20260805-3">
 </head>
 <body>
   <header class="topbar">
@@ -18,7 +18,7 @@
     <div class="project-name">
       <span class="status-dot"></span>
       <input id="projectTitle" value="The Last Signal" aria-label="Project title">
-      <span class="saved">Saved just now</span>
+      <button class="top-history" id="topUndo" title="Undo" aria-label="Undo" disabled>↶</button><button class="top-history" id="topRedo" title="Redo" aria-label="Redo" disabled>↷</button><span class="saved">Saved just now</span>
     </div>
     <div class="top-layers" aria-label="Canvas layers">
       <button class="layer-row" id="eventsLayer" title="Show or hide events"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em id="eventCount">4</em></button>
@@ -27,7 +27,7 @@
     </div>
     <div class="top-actions">
       <button class="icon-btn lock-all-btn" id="lockAll" aria-label="Lock or unlock all movable points" title="Lock / unlock all">🔓</button>
-      <button class="icon-btn lock-all-btn" id="restoreLocks" aria-label="Restore last lock state" title="Restore last lock state">↺🔒</button>
+      <button class="icon-btn lock-all-btn" id="restoreLocks" aria-label="Restore last lock state" title="Restore last lock state">↶</button>
       <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
         <svg viewBox="0 0 24 24"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>
       </button>
@@ -163,6 +163,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260805-2"></script>
+  <script src="/static/app.js?v=20260805-3"></script>
 </body>
 </html>
