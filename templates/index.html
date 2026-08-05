@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260805-5">
+  <link rel="stylesheet" href="/static/styles.css?v=20260805-6">
 </head>
 <body>
   <header class="topbar">
@@ -78,12 +78,6 @@
     <div class="popover-checks"><label><input id="noteBoldInput" type="checkbox"> Bold</label><label><input id="noteItalicInput" type="checkbox"> Italic</label></div>
     <button id="noteApply">Apply changes</button>
     <button class="danger" id="noteDelete">Delete text</button>
-  </div>
-
-  <div class="connection-menu" id="connectionMenu" hidden>
-    <div class="structure-menu-head"><strong>Diegetic line</strong><button id="connectionMenuClose" aria-label="Close">×</button></div>
-    <label>Line type<select id="connectionStyleInput"><option value="curve">Bezier curve</option><option value="vertical">Vertical fixed</option></select></label>
-    <p>Vertical fixed follows the event’s chronological position. Switch back to restore the movable curve.</p>
   </div>
 
   <main class="workspace">
@@ -159,11 +153,12 @@
       <div class="subhead">DIEGETIC CONNECTION</div>
       <p class="field-help">Connect this event to its perceived position in story time.</p>
       <button class="diegetic-btn" id="toggleDiegetic">Add diegetic line</button>
+      <div class="field" id="diegeticStyleField" hidden><label>Diegetic line type</label><select id="diegeticStyleSelect"><option value="vertical">Vertical fixed</option><option value="curve">Bezier curve</option></select></div>
       <div class="field"><label>Structure template</label><select id="structureTemplate"><option value="none">None</option><option value="three-act">Three-act structure</option><option value="hero">Hero’s journey</option><option value="save-cat">Save the Cat</option><option value="custom">Custom</option></select></div>
       <button class="diegetic-btn secondary" id="addStructurePoint">＋ Add structure point</button>
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260805-5"></script>
+  <script src="/static/app.js?v=20260805-6"></script>
 </body>
 </html>
