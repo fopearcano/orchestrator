@@ -124,3 +124,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Brand-adjacent undo/redo */
 .topbar .brand{width:auto}.brand-history{display:flex;align-items:center;gap:4px;margin-left:6px;margin-right:10px}.project-name{border-left:1px solid var(--line)}
+
+/* Lock icon status colors */
+.item-lock.unlocked,.lock-all-btn.unlocked{color:#19b866;border-color:color-mix(in srgb,#19b866 70%,var(--line));background:color-mix(in srgb,#19b866 12%,var(--panel))}.item-lock.locked,.lock-all-btn.locked{color:#e24a3b;border-color:color-mix(in srgb,#e24a3b 70%,var(--line));background:color-mix(in srgb,#e24a3b 12%,var(--panel))}
