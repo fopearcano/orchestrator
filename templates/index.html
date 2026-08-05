@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260805-11">
+  <link rel="stylesheet" href="/static/styles.css?v=20260805-12">
 </head>
 <body>
   <header class="topbar">
@@ -116,6 +116,7 @@
         <button class="tool" data-tool="group" title="Group select · Alt-drag to stretch"><b>◇</b></button>
         <button class="tool" data-tool="event" title="Add event"><svg viewBox="0 0 24 24"><path d="M12 4v16M7 8h10M8 17h8"/></svg></button>
         <button class="tool" data-tool="note" title="Add note"><b>T</b></button>
+        <button class="tool selected-lock-tool unlocked" id="selectedLockTool" title="Lock/unlock selected event" aria-label="Lock or unlock selected event" disabled>🔓</button>
         <span></span>
         <button class="tool spread-tool" id="spreadProject" title="Spread project and chronological scale" aria-label="Spread entire project">↔</button>
         <button class="tool spread-tool" id="stretchPlot" title="Stretch plot without changing chronological scale or grid" aria-label="Stretch plot only">⇔</button>
@@ -165,6 +166,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260805-11"></script>
+  <script src="/static/app.js?v=20260805-12"></script>
 </body>
 </html>
