@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260805-10">
+  <link rel="stylesheet" href="/static/styles.css?v=20260805-11">
 </head>
 <body>
   <header class="topbar">
@@ -49,11 +49,14 @@
   <aside class="settings-panel" id="settingsPanel" aria-hidden="true">
     <div class="drawer-head"><strong>Settings</strong><button id="settingsClose">×</button></div>
     <label class="settings-row"><span>Time scale<small>Labels across the canvas</small></span><select id="timeUnit"><option value="hours">Hours</option><option value="days">Days</option><option value="months">Months</option><option value="years">Years</option></select></label>
-    <label class="settings-row"><span>Theme<small>Interface appearance</small></span><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="custom">Custom</option></select></label>
+    <label class="settings-row"><span>Theme<small>Interface appearance</small></span><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="custom">Custom</option><option value="print-bw">Monochrome B&W print</option></select></label>
     <div class="custom-theme" id="customThemeControls" hidden>
       <label>Canvas<input type="color" id="customBg" value="#f4f2ed"></label>
       <label>Panels<input type="color" id="customPanel" value="#fbfaf7"></label>
       <label>Text<input type="color" id="customInk" value="#252724"></label>
+      <label>System text<input type="color" id="customMuted" value="#8a8d85"></label>
+      <label>Lines<input type="color" id="customLine" value="#deddd6"></label>
+      <label>Grid<input type="color" id="customGrid" value="#deded8"></label>
       <label>Accent<input type="color" id="customAccent" value="#e56745"></label>
     </div>
     <label class="settings-row"><span>Grid<small>Show canvas grid</small></span><input id="gridToggle" type="checkbox" checked></label>
@@ -157,11 +160,11 @@
       <p class="field-help">Connect this event to its perceived position in story time.</p>
       <button class="diegetic-btn" id="toggleDiegetic">Add diegetic line</button>
       <div class="field" id="diegeticStyleField" hidden><label>Diegetic line type</label><select id="diegeticStyleSelect"><option value="vertical">Vertical fixed</option><option value="curve">Bezier curve</option></select></div>
-      <div class="field"><label>Structure template</label><select id="structureTemplate"><option value="none">None</option><option value="three-act">Three-act structure</option><option value="hero">Hero’s journey</option><option value="save-cat">Save the Cat</option><option value="custom">Custom</option></select></div>
+      <div class="field"><label>Structure template</label><select id="structureTemplate"><option value="none">None</option><option value="three-act">Three-act structure</option><option value="hero">Hero’s journey</option><option value="save-cat">Save the Cat</option><option value="custom">Custom</option><option value="print-bw">Monochrome B&W print</option></select></div>
       <button class="diegetic-btn secondary" id="addStructurePoint">＋ Add structure point</button>
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260805-10"></script>
+  <script src="/static/app.js?v=20260805-11"></script>
 </body>
 </html>

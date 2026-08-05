@@ -127,3 +127,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Lock icon status colors */
 .item-lock.unlocked,.lock-all-btn.unlocked{color:#19b866;border-color:color-mix(in srgb,#19b866 70%,var(--line));background:color-mix(in srgb,#19b866 12%,var(--panel))}.item-lock.locked,.lock-all-btn.locked{color:#e24a3b;border-color:color-mix(in srgb,#e24a3b 70%,var(--line));background:color-mix(in srgb,#e24a3b 12%,var(--panel))}
+
+/* Print-friendly monochrome theme */
+.print-bw{--shadow:0 8px 22px #0002}.print-bw .line-stroke,.print-bw .event-line,.print-bw .chrono-dot,.print-bw .event-label,.print-bw .diegetic-connections *,.print-bw .structure-point i,.print-bw .structure-point:before,.print-bw .structure-point:after,.print-bw .structure-point span,.print-bw .note{filter:grayscale(1)}
