@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260805-12">
+  <link rel="stylesheet" href="/static/styles.css?v=20260805-13">
 </head>
 <body>
   <header class="topbar">
@@ -40,6 +40,8 @@
     <div class="drawer-head"><strong>Projects</strong><button id="projectsClose">×</button></div>
     <button class="primary-action" id="newProject">＋ New project</button>
     <div class="project-card active"><span class="project-dot"></span><div><strong id="currentProjectName">The Last Signal</strong><small>Current project</small></div></div>
+    <div class="drawer-label">RECENT</div>
+    <div class="recent-projects" id="recentProjectList"><small>No saved projects yet.</small></div>
     <div class="drawer-label">FILE</div>
     <button class="drawer-action" id="saveFile">⇩ Save project file</button>
     <label class="drawer-action file-action">⇧ Open project file<input id="openFile" type="file" accept=".storyline,.json"></label>
@@ -151,7 +153,8 @@
       <div class="divider"></div>
       <div class="subhead">APPEARANCE</div>
       <div class="field"><label>Color</label><div class="color-field"><input id="colorInput" type="color" value="#e56745"><span>#E56745</span></div></div>
-      <div class="field-grid"><div class="field"><label>Line</label><select id="dashInput"><option>Solid</option><option>Dashed</option><option>Dotted</option></select></div><div class="field"><label>Stroke size</label><select id="eventStrokeInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></div></div>
+      <div class="field-grid"><div class="field"><label>Line</label><select id="dashInput"><option>Solid</option><option>Dashed</option><option>Dotted</option></select></div><div class="field"><label>Vertical line size</label><select id="eventLineStrokeInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></div></div>
+      <div class="field"><label>Box stroke size</label><select id="eventStrokeInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></div>
       <div class="field"><label>Opacity</label><input id="opacityInput" value="100%"></div>
       <div class="field-grid"><div class="field"><label>Font</label><select id="fontInput"><option value="Manrope">Manrope</option><option value="DM Mono">Mono</option></select></div><div class="field"><label>Size</label><select id="fontSizeInput"><option value="13">13 px</option><option value="15">15 px</option><option value="18">18 px</option></select></div></div>
       <div class="text-style-controls"><label><input id="boldInput" type="checkbox"><strong>B</strong> Bold</label><label><input id="italicInput" type="checkbox"><em>I</em> Italic</label></div>
@@ -166,6 +169,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260805-12"></script>
+  <script src="/static/app.js?v=20260805-13"></script>
 </body>
 </html>
