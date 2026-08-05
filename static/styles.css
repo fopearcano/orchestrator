@@ -121,3 +121,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Top-bar history controls and non-overlapping structure locks */
 .top-history{width:24px;height:24px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);display:grid;place-items:center;padding:0;font:700 13px Manrope;cursor:pointer}.top-history:disabled{opacity:.35;cursor:not-allowed}.structure-point span{padding-right:30px}.structure-lock{right:5px}
+
+/* Brand-adjacent undo/redo */
+.topbar .brand{width:auto}.brand-history{display:flex;align-items:center;gap:4px;margin-left:6px;margin-right:10px}.project-name{border-left:1px solid var(--line)}

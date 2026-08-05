@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260805-3">
+  <link rel="stylesheet" href="/static/styles.css?v=20260805-4">
 </head>
 <body>
   <header class="topbar">
@@ -15,10 +15,11 @@
       <span class="brand-mark"><i></i><i></i><i></i></span>
       <span>storyline</span>
     </button>
+    <div class="brand-history"><button class="top-history" id="topUndo" title="Undo" aria-label="Undo" disabled>↶</button><button class="top-history" id="topRedo" title="Redo" aria-label="Redo" disabled>↷</button></div>
     <div class="project-name">
       <span class="status-dot"></span>
       <input id="projectTitle" value="The Last Signal" aria-label="Project title">
-      <button class="top-history" id="topUndo" title="Undo" aria-label="Undo" disabled>↶</button><button class="top-history" id="topRedo" title="Redo" aria-label="Redo" disabled>↷</button><span class="saved">Saved just now</span>
+      <span class="saved">Saved just now</span>
     </div>
     <div class="top-layers" aria-label="Canvas layers">
       <button class="layer-row" id="eventsLayer" title="Show or hide events"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em id="eventCount">4</em></button>
@@ -163,6 +164,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260805-3"></script>
+  <script src="/static/app.js?v=20260805-4"></script>
 </body>
 </html>
