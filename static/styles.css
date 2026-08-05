@@ -115,3 +115,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Lock controls */
 .lock-all-btn{font-size:12px;line-height:1}.item-lock{position:absolute;z-index:4;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 86%,transparent);color:var(--ink);border-radius:999px;width:20px;height:20px;display:grid;place-items:center;padding:0;font-size:10px;cursor:pointer}.event-lock{top:4px;right:4px}.structure-lock{top:50%;right:4px;transform:translateY(-50%)}.event .item-lock:hover,.structure-point .item-lock:hover{border-color:var(--c);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 20%,transparent)}.event.locked,.structure-point.locked{cursor:not-allowed}.structure-point.locked i{cursor:not-allowed;filter:grayscale(.25)}
+
+/* Resizable notes */
+.note{min-width:120px;min-height:70px;max-width:720px;max-height:520px;resize:both;overflow:auto;white-space:normal;overflow-wrap:anywhere;background:color-mix(in srgb,var(--panel) 42%,transparent);border:1px solid color-mix(in srgb,var(--note-color,#545750) 25%,transparent);border-radius:6px}.note span{display:block}.note::-webkit-resizer{background:linear-gradient(135deg,transparent 45%,var(--note-color,#545750) 46% 55%,transparent 56% 64%,var(--note-color,#545750) 65% 74%,transparent 75%)}
