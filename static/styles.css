@@ -99,7 +99,7 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 .selection-rectangle[hidden]{display:none}.selection-rectangle{position:absolute;z-index:20;border:1px solid var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--panel) 55%,transparent) inset;pointer-events:none}
 
 /* Outline structure-point chronology guides */
-.structure-point:before{content:"";position:absolute;z-index:0;left:50%;bottom:0;width:3px;height:var(--guide-height);transform:translateX(-50%);background:radial-gradient(circle,var(--c) 0 1.25px,transparent 1.4px) center bottom/3px 8px repeat-y;opacity:.9;pointer-events:none}.structure-point i{position:relative;z-index:1}
+.structure-point:before{content:"";position:absolute;z-index:0;left:50%;bottom:0;width:7px;height:var(--guide-height);transform:translateX(-50%);background:repeating-linear-gradient(to bottom,var(--c) 0 3px,transparent 3px 8px);opacity:.9;pointer-events:none}.structure-point i{position:relative;z-index:1}
 
 /* Dual horizontal-stretch modes */
 .spread-tool.mode-active{color:var(--panel);background:var(--accent)}
@@ -112,3 +112,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Diegetic connection type menu */
 .connection-menu[hidden]{display:none}.connection-menu{position:fixed;z-index:50;width:230px;padding:13px;background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 14px 40px #1115}.connection-menu label{display:block;color:var(--muted);font-size:9px;font-weight:700}.connection-menu select{display:block;width:100%;height:33px;margin-top:6px;padding:0 8px;border:1px solid var(--line);border-radius:5px;background:var(--bg);color:var(--ink);font:11px Manrope}.connection-menu p{margin:10px 0 0;color:var(--muted);font-size:9px;line-height:1.45}.diegetic-connections .diegetic-connection-path{pointer-events:stroke;cursor:context-menu}.diegetic-connections .diegetic-handle.fixed{cursor:not-allowed}
+
+/* Lock controls */
+.lock-all-btn{font-size:12px;line-height:1}.item-lock{position:absolute;z-index:4;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 86%,transparent);color:var(--ink);border-radius:999px;width:20px;height:20px;display:grid;place-items:center;padding:0;font-size:10px;cursor:pointer}.event-lock{top:4px;right:4px}.structure-lock{top:50%;right:4px;transform:translateY(-50%)}.event .item-lock:hover,.structure-point .item-lock:hover{border-color:var(--c);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 20%,transparent)}.event.locked,.structure-point.locked{cursor:not-allowed}.structure-point.locked i{cursor:not-allowed;filter:grayscale(.25)}
