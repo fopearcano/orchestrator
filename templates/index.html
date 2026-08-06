@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260805-20">
+  <link rel="stylesheet" href="/static/styles.css?v=20260806-21">
 </head>
 <body>
   <header class="topbar">
@@ -51,6 +51,8 @@
   <aside class="settings-panel" id="settingsPanel" aria-hidden="true">
     <div class="drawer-head"><strong>Settings</strong><button id="settingsClose">×</button></div>
     <label class="settings-row"><span>Time scale<small>Labels across the canvas</small></span><select id="timeUnit"><option value="hours">Hours</option><option value="days">Days</option><option value="months">Months</option><option value="years">Years</option></select></label>
+    <label class="settings-row"><span>Timecode text size<small>Chronological ruler labels</small></span><input id="chronologicalTextSize" type="number" min="6" max="32" value="9" aria-label="Chronological timecode text size"></label>
+    <label class="settings-row"><span>Show every count<small>Label every hour, day, month, or year</small></span><input id="showAllTimeCounts" type="checkbox"></label>
     <label class="settings-row"><span>Theme<small>Interface appearance</small></span><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="custom">Custom</option><option value="print-bw">Monochrome B&W print</option></select></label>
     <div class="custom-theme" id="customThemeControls" hidden>
       <label>Canvas<input type="color" id="customBg" value="#f4f2ed"></label>
@@ -131,12 +133,11 @@
         <div class="world" id="world">
           <div class="time-zero-line" aria-label="Chronological time zero"></div>
           <div class="ruler" id="ruler"><i class="playhead"></i></div>
-          <div class="chronological-label">CHRONOLOGICAL TIMELINE</div>
           <div id="lines"></div>
           <svg class="diegetic-connections" id="diegeticConnections" aria-label="Diegetic event connections"></svg>
           <div id="events"></div>
           <div id="notes"></div>
-          <div class="diegetic-axis" id="diegeticAxis"><span>DIEGETIC TIMELINE</span></div>
+          <div class="diegetic-axis" id="diegeticAxis" aria-label="Diegetic timeline"></div>
           <div class="structure-points" id="structurePoints"></div>
         </div>
       </div>
@@ -170,6 +171,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260805-20"></script>
+  <script src="/static/app.js?v=20260806-21"></script>
 </body>
 </html>
