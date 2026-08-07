@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260807-33">
+  <link rel="stylesheet" href="/static/styles.css?v=20260807-34">
 </head>
 <body>
   <header class="topbar">
@@ -16,12 +16,12 @@
       <span>storyline</span>
     </button>
     <div class="brand-history"><button class="top-history" id="topUndo" title="Undo" aria-label="Undo" disabled>↶</button><button class="top-history" id="topRedo" title="Redo" aria-label="Redo" disabled>↷</button></div>
-    <div class="project-name">
+    <div class="project-name" aria-label="Project saved state">
       <span class="status-dot"></span>
-      <input id="projectTitle" value="The Last Signal" aria-label="Project title">
-      <span class="saved">Saved just now</span>
+      <input id="projectTitle" value="The Last Signal" type="hidden">
+      <span class="saved">Saved</span>
     </div>
-    <div class="selected-event-info" id="selectedEventInfo" hidden><strong id="selectedEventTitle"></strong><span id="selectedEventOrder"></span></div>
+    <div class="selected-event-info" id="selectedEventInfo" hidden><strong id="selectedEventTitle"></strong><span class="selected-event-order" aria-label="Chronological and diegetic order"><b id="selectedChronologicalOrder"></b><b id="selectedDiegeticOrder"></b></span></div>
     <button class="outline-toggle" id="outlineToggle" type="button" title="Open diegetic outline list" aria-label="Open diegetic outline list"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></button>
     <div class="event-search" role="search"><span aria-hidden="true">⌕</span><input id="eventSearch" type="search" placeholder="Search events" aria-label="Search events"><output id="eventSearchCount" aria-live="polite"></output><button id="eventSearchClear" type="button" title="Clear event search" aria-label="Clear event search">×</button></div>
     <div class="top-layers" aria-label="Canvas layers">
@@ -184,6 +184,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260807-33"></script>
+  <script src="/static/app.js?v=20260807-34"></script>
 </body>
 </html>

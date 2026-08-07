@@ -79,7 +79,7 @@ function render(){
   renderRuler();world.style.backgroundSize=`${STEP*timeStretch}px 36px`;world.style.backgroundPosition=`${ORIGIN}px 0`;
   $('#eventCount').textContent=events.length;$('#noteCount').textContent=notes.length;const matchingEvents=events.filter(eventMatchesSearch).length;$('#eventSearchCount').textContent=eventSearch?`${matchingEvents}/${events.length}`:'';$('#eventSearchClear').hidden=!eventSearch;
   const {chronological:chronologicalOrder,diegetic:diegeticOrder}=calculateEventOrderMaps();
-  const selectedEvent=events.find(event=>event.id===selected),selectedInfo=$('#selectedEventInfo');selectedInfo.hidden=!selectedEvent;if(selectedEvent){$('#selectedEventTitle').textContent=selectedEvent.label;$('#selectedEventOrder').textContent=`C${chronologicalOrder.get(selectedEvent.id)} · D${diegeticOrder.get(selectedEvent.id)}`}
+  const selectedEvent=events.find(event=>event.id===selected),selectedInfo=$('#selectedEventInfo');selectedInfo.hidden=!selectedEvent;if(selectedEvent){$('#selectedEventTitle').textContent=selectedEvent.label;$('#selectedChronologicalOrder').textContent=chronologicalOrder.get(selectedEvent.id);$('#selectedDiegeticOrder').textContent=diegeticOrder.get(selectedEvent.id)}
   const eventLayout=calculateEventLayout(),structureLayout=calculateStructureLayout();
   const diegeticY=Math.max(...timelines.map(t=>t.y+(t.eventDepth||0)*EVENT_LANE_GAP))+190;
   $('#diegeticAxis').style.top=`${diegeticY}px`;$('#structurePoints').style.top=`${diegeticY}px`;$('#structurePoints').style.setProperty('--guide-height',`${diegeticY}px`);
