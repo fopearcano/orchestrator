@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260806-21">
+  <link rel="stylesheet" href="/static/styles.css?v=20260807-22">
 </head>
 <body>
   <header class="topbar">
@@ -21,6 +21,7 @@
       <input id="projectTitle" value="The Last Signal" aria-label="Project title">
       <span class="saved">Saved just now</span>
     </div>
+    <div class="event-search" role="search"><span aria-hidden="true">⌕</span><input id="eventSearch" type="search" placeholder="Search events" aria-label="Search events"><output id="eventSearchCount" aria-live="polite"></output><button id="eventSearchClear" type="button" title="Clear event search" aria-label="Clear event search">×</button></div>
     <div class="top-layers" aria-label="Canvas layers">
       <button class="layer-row" id="eventsLayer" title="Show or hide events"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em id="eventCount">4</em></button>
       <button class="layer-row" id="notesLayer" title="Show or hide notes"><span class="eye">◉</span><span class="layer-icon">T</span>Notes <em id="noteCount">2</em></button>
@@ -154,7 +155,7 @@
       <div class="field"><label>Description</label><textarea id="descriptionInput" rows="4" placeholder="Describe what happens at this event…"></textarea></div>
       <div class="divider"></div>
       <div class="subhead">APPEARANCE</div>
-      <div class="field"><label>Color</label><div class="color-field"><input id="colorInput" type="color" value="#e56745"><span>#E56745</span></div></div>
+      <div class="field-grid"><div class="field"><label>Stroke color</label><div class="color-field"><input id="colorInput" type="color" value="#e56745"><span>#E56745</span></div></div><div class="field"><label>Box fill</label><div class="color-field"><input id="fillColorInput" type="color" value="#fbfaf7"><span>#FBFAF7</span></div></div></div>
       <div class="field-grid"><div class="field"><label>Line</label><select id="dashInput"><option>Solid</option><option>Dashed</option><option>Dotted</option></select></div><div class="field"><label>Vertical line size</label><select id="eventLineStrokeInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></div></div>
       <div class="field"><label>Box stroke size</label><select id="eventStrokeInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></div>
       <div class="field"><label>Opacity</label><input id="opacityInput" value="100%"></div>
@@ -171,6 +172,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260806-21"></script>
+  <script src="/static/app.js?v=20260807-22"></script>
 </body>
 </html>
