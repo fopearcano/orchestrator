@@ -146,3 +146,6 @@ body.left-panel-hidden.right-panel-hidden .workspace{grid-template-columns:0 1fr
 
 /* Timeline visibility owns event connection paths and handles */
 .diegetic-connections .event-diegetic.is-hidden{display:none!important;visibility:hidden;pointer-events:none}
+
+/* Outline export and printable shortcut reference */
+.projects-drawer,.settings-panel{overflow-y:auto;overscroll-behavior:contain}.outline-export{display:grid;grid-template-columns:1fr auto;gap:7px}.outline-export select,.outline-export button{height:34px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);padding:0 9px;font:10px Manrope}.outline-export button{background:var(--ink);color:var(--panel);cursor:pointer;font-weight:700}.shortcut-section{padding-bottom:18px}.shortcut-list{margin:0}.shortcut-list div{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:7px 3px;border-bottom:1px solid var(--line);font-size:9px}.shortcut-list dt{font-weight:700;color:var(--ink)}.shortcut-list dd{margin:0;color:var(--muted);text-align:right}.shortcut-print{margin-top:10px;border:1px solid var(--line)}

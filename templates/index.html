@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260807-24">
+  <link rel="stylesheet" href="/static/styles.css?v=20260807-25">
 </head>
 <body>
   <header class="topbar">
@@ -46,6 +46,8 @@
     <div class="drawer-label">FILE</div>
     <button class="drawer-action" id="saveFile">⇩ Save project file</button>
     <label class="drawer-action file-action">⇧ Open project file<input id="openFile" type="file" accept=".storyline,.json"></label>
+    <div class="drawer-label">DIEGETIC OUTLINE</div>
+    <div class="outline-export"><select id="outlineExportType" aria-label="Diegetic outline export format"><option value="txt">Plain text (.txt)</option><option value="md">Markdown (.md)</option><option value="pdf">PDF (.pdf)</option></select><button id="exportOutline">Export list</button></div>
   </aside>
   <div class="drawer-scrim" id="drawerScrim"></div>
 
@@ -65,6 +67,7 @@
       <label>Accent<input type="color" id="customAccent" value="#e56745"></label>
     </div>
     <label class="settings-row"><span>Grid<small>Show canvas grid</small></span><input id="gridToggle" type="checkbox" checked></label>
+    <div class="shortcut-section"><div class="drawer-label">KEYBOARD SHORTCUTS</div><dl class="shortcut-list"><div><dt>Arrow keys</dt><dd>Scroll canvas</dd></div><div><dt>Shift + arrows</dt><dd>Scroll faster</dd></div><div><dt>V / E / N</dt><dd>Pan / Event / Note</dd></div><div><dt>M / G</dt><dd>Marquee / Group</dd></div><div><dt>+ / −</dt><dd>Zoom in / out</dd></div><div><dt>F</dt><dd>Fit canvas</dd></div><div><dt>Ctrl/Cmd + F</dt><dd>Search events</dd></div><div><dt>Ctrl/Cmd + S</dt><dd>Save project</dd></div><div><dt>Ctrl/Cmd + Z</dt><dd>Undo</dd></div><div><dt>Ctrl/Cmd + Shift + Z</dt><dd>Redo</dd></div><div><dt>Escape</dt><dd>Clear selection/search</dd></div></dl><button class="drawer-action shortcut-print" id="printHotkeys">Print shortcut list</button></div>
   </aside>
 
   <div class="structure-menu" id="structureMenu" hidden>
@@ -125,7 +128,7 @@
         <span></span>
         <button class="tool spread-tool" id="spreadProject" title="Spread project and chronological scale" aria-label="Spread entire project">↔</button>
         <button class="tool spread-tool" id="stretchPlot" title="Stretch plot without changing chronological scale or grid" aria-label="Stretch plot only">⇔</button>
-        <div class="spread-control" id="spreadControl" hidden><input id="spreadRange" type="range" min="0.5" max="8" step="0.01" value="1" aria-label="Horizontal project spread"><output id="spreadValue">100%</output></div>
+        <div class="spread-control" id="spreadControl" hidden><input id="spreadRange" type="range" min="0.5" max="16" step="0.01" value="1" aria-label="Horizontal project spread"><output id="spreadValue">100%</output></div>
         <button class="tool" id="undoButton" title="Undo" aria-label="Undo" disabled>↶</button>
       </div>
       <div class="selection-rectangle" id="selectionRectangle" hidden></div>
@@ -172,6 +175,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260807-24"></script>
+  <script src="/static/app.js?v=20260807-25"></script>
 </body>
 </html>
