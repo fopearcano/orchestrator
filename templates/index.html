@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260807-26">
+  <link rel="stylesheet" href="/static/styles.css?v=20260807-27">
 </head>
 <body>
   <header class="topbar">
@@ -21,6 +21,7 @@
       <input id="projectTitle" value="The Last Signal" aria-label="Project title">
       <span class="saved">Saved just now</span>
     </div>
+    <button class="outline-toggle" id="outlineToggle" type="button" title="Open diegetic outline list" aria-label="Open diegetic outline list">☷</button>
     <div class="event-search" role="search"><span aria-hidden="true">⌕</span><input id="eventSearch" type="search" placeholder="Search events" aria-label="Search events"><output id="eventSearchCount" aria-live="polite"></output><button id="eventSearchClear" type="button" title="Clear event search" aria-label="Clear event search">×</button></div>
     <div class="top-layers" aria-label="Canvas layers">
       <button class="layer-row" id="eventsLayer" title="Show or hide events"><span class="eye">◉</span><span class="layer-icon">┋</span>Events <em id="eventCount">4</em></button>
@@ -68,6 +69,12 @@
     </div>
     <label class="settings-row"><span>Grid<small>Show canvas grid</small></span><input id="gridToggle" type="checkbox" checked></label>
     <div class="shortcut-section"><div class="drawer-label">KEYBOARD SHORTCUTS</div><dl class="shortcut-list"><div><dt>Arrow keys</dt><dd>Scroll canvas</dd></div><div><dt>Shift + arrows</dt><dd>Scroll faster</dd></div><div><dt>V / E / N</dt><dd>Pan / Event / Note</dd></div><div><dt>M / G</dt><dd>Marquee / Group</dd></div><div><dt>+ / −</dt><dd>Zoom in / out</dd></div><div><dt>F</dt><dd>Fit canvas</dd></div><div><dt>Ctrl/Cmd + F</dt><dd>Search events</dd></div><div><dt>Ctrl/Cmd + S</dt><dd>Save project</dd></div><div><dt>Ctrl/Cmd + Z</dt><dd>Undo</dd></div><div><dt>Ctrl/Cmd + Shift + Z</dt><dd>Redo</dd></div><div><dt>Escape</dt><dd>Clear selection/search</dd></div></dl><button class="drawer-action shortcut-print" id="printHotkeys">Print shortcut list</button></div>
+  </aside>
+
+  <aside class="outline-list-panel" id="outlinePanel" aria-hidden="true">
+    <div class="drawer-head"><strong>Diegetic timeline</strong><button id="outlineClose" aria-label="Close diegetic list">×</button></div>
+    <p class="outline-intro">Events numbered in diegetic order and grouped by the current outline.</p>
+    <div class="outline-list-content" id="outlineListContent"></div>
   </aside>
 
   <div class="structure-menu" id="structureMenu" hidden>
@@ -176,6 +183,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260807-26"></script>
+  <script src="/static/app.js?v=20260807-27"></script>
 </body>
 </html>
