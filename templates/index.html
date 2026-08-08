@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=20260807-36">
+  <link rel="stylesheet" href="/static/styles.css?v=20260808-37">
 </head>
 <body>
   <header class="topbar">
@@ -73,7 +73,12 @@
   </aside>
 
   <aside class="outline-list-panel" id="outlinePanel" aria-hidden="true">
-    <div class="drawer-head"><strong>Diegetic timeline</strong><button id="outlineClose" aria-label="Close diegetic list">×</button></div>
+    <div class="drawer-head outline-panel-head"><strong>Diegetic timeline</strong><div class="outline-panel-actions"><button id="outlineListSettings" aria-label="List appearance settings" title="List appearance settings">⚙</button><button id="outlineDockToggle" aria-label="Undock diegetic list" title="Dock or undock list" aria-pressed="true">◲</button><button id="outlineClose" aria-label="Close diegetic list" title="Close">×</button></div></div>
+    <div class="outline-list-settings" id="outlineListSettingsPanel" hidden>
+      <label>Opacity <output id="outlineOpacityValue">100%</output><input id="outlineOpacity" type="range" min="30" max="100" value="100"></label>
+      <label>Background <input id="outlineBackground" type="color" value="#fbfaf7"></label>
+      <label>Text <input id="outlineTextColor" type="color" value="#252724"></label>
+    </div>
     <p class="outline-intro">Events numbered in diegetic order and grouped by the current outline.</p>
     <div class="outline-list-content" id="outlineListContent"></div>
   </aside>
@@ -184,6 +189,6 @@
       <button class="delete-btn" id="deleteEvent">Delete event</button>
     </aside>
   </main>
-  <script src="/static/app.js?v=20260807-36"></script>
+  <script src="/static/app.js?v=20260808-37"></script>
 </body>
 </html>
