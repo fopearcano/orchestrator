@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Storyline — Timeline Plotter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css?v=20260808-39">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand brand-button" id="projectsToggle" aria-label="Open projects">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span>storyline</span>
+    </button>
+    <div class="brand-history"><button class="top-history" id="topUndo" title="Undo" aria-label="Undo" disabled>↶</button><button class="top-history" id="topRedo" title="Redo" aria-label="Redo" disabled>↷</button></div>
+    <div class="project-name" aria-label="Project saved state">
+      <span class="status-dot"></span>
+      <input id="projectTitle" value="The Last Signal" type="hidden">
+      <span class="saved">Saved</span>
+    </div>
+    <div class="selected-event-info" id="selectedEventInfo" hidden><strong id="selectedEventTitle"></strong><span class="selected-event-order" aria-label="Chronological and diegetic order"><b id="selectedChronologicalOrder"></b><b id="selectedDiegeticOrder"></b></span></div>
+    <button class="outline-toggle" id="outlineToggle" type="button" title="Open diegetic outline list" aria-label="Open diegetic outline list"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></button>
+    <div class="event-search" role="search"><span aria-hidden="true">⌕</span><input id="eventSearch" type="search" placeholder="Search events" aria-label="Search events"><output id="eventSearchCount" aria-live="polite"></output><button id="eventSearchClear" type="button" title="Clear event search" aria-label="Clear event search">×</button></div>
+    <div class="top-layers" aria-label="Canvas layers">
+      <button class="layer-row" id="eventsLayer" title="Hide events" aria-label="Show or hide events" aria-pressed="true"><span class="layer-icon">┋</span><em id="eventCount">4</em></button>
+      <button class="layer-row" id="notesLayer" title="Hide notes" aria-label="Show or hide notes" aria-pressed="true"><span class="layer-icon">T</span><em id="noteCount">2</em></button>
+      <button class="layer-row" id="gridLayer" title="Hide grid" aria-label="Show or hide grid" aria-pressed="true"><span class="layer-icon">⌗</span></button>
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn lock-all-btn" id="lockAll" aria-label="Lock or unlock all movable points" title="Lock / unlock all">🔓</button>
+      <button class="icon-btn lock-all-btn" id="restoreLocks" aria-label="Restore last lock state" title="Restore last lock state">↶</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>
+      </button>
+      <button class="icon-btn" id="settingsToggle" aria-label="Open settings" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/></svg></button>
+    </div>
+  </header>
+
+  <aside class="projects-drawer" id="projectsDrawer" aria-hidden="true">
+    <div class="drawer-head"><strong>Projects</strong><button id="projectsClose">×</button></div>
+    <button class="primary-action" id="newProject">＋ New project</button>
+    <div class="project-card active"><span class="project-dot"></span><div><strong id="currentProjectName">The Last Signal</strong><small>Current project</small></div></div>
+    <div class="drawer-label">RECENT</div>
+    <div class="recent-projects" id="recentProjectList"><small>No saved projects yet.</small></div>
+    <div class="drawer-label">FILE</div>
+    <button class="drawer-action" id="saveFile">⇩ Save project file</button>
+    <label class="drawer-action file-action">⇧ Open project file<input id="openFile" type="file" accept=".storyline,.json"></label>
+    <div class="drawer-label">DIEGETIC OUTLINE</div>
+    <div class="outline-export"><select id="outlineExportType" aria-label="Diegetic outline export format"><option value="txt">Plain text (.txt)</option><option value="md">Markdown (.md)</option><option value="pdf">PDF (.pdf)</option></select><button id="exportOutline">Export list</button></div>
+  </aside>
+  <div class="drawer-scrim" id="drawerScrim"></div>
+
+  <aside class="settings-panel" id="settingsPanel" aria-hidden="true">
+    <div class="drawer-head"><strong>Settings</strong><button id="settingsClose">×</button></div>
+    <label class="settings-row"><span>Time scale<small>Labels across the canvas</small></span><select id="timeUnit"><option value="hours">Hours</option><option value="days">Days</option><option value="months">Months</option><option value="years">Years</option></select></label>
+    <label class="settings-row"><span>Timecode text size<small>Chronological ruler labels</small></span><input id="chronologicalTextSize" type="number" min="6" max="32" value="9" aria-label="Chronological timecode text size"></label>
+    <label class="settings-row"><span>Show every count<small>Label every hour, day, month, or year</small></span><input id="showAllTimeCounts" type="checkbox"></label>
+    <label class="settings-row"><span>Theme<small>Interface appearance</small></span><select id="themeSelect"><option value="light">Light</option><option value="dark">Dark</option><option value="custom">Custom</option><option value="print-bw">Monochrome B&W print</option></select></label>
+    <div class="custom-theme" id="customThemeControls" hidden>
+      <label>Canvas<input type="color" id="customBg" value="#f4f2ed"></label>
+      <label>Panels<input type="color" id="customPanel" value="#fbfaf7"></label>
+      <label>Text<input type="color" id="customInk" value="#252724"></label>
+      <label>System text<input type="color" id="customMuted" value="#8a8d85"></label>
+      <label>Lines<input type="color" id="customLine" value="#deddd6"></label>
+      <label>Grid<input type="color" id="customGrid" value="#deded8"></label>
+      <label>Accent<input type="color" id="customAccent" value="#e56745"></label>
+    </div>
+    <label class="settings-row"><span>Grid<small>Show canvas grid</small></span><input id="gridToggle" type="checkbox" checked></label>
+    <div class="shortcut-section"><div class="drawer-label">KEYBOARD SHORTCUTS</div><dl class="shortcut-list"><div><dt>Arrow keys</dt><dd>Scroll canvas</dd></div><div><dt>Shift + ← / →</dt><dd>Previous / next diegetic event</dd></div><div><dt>V / E / N</dt><dd>Pan / Event / Note</dd></div><div><dt>M / G</dt><dd>Marquee / Group</dd></div><div><dt>+ / −</dt><dd>Zoom in / out</dd></div><div><dt>F</dt><dd>Fit canvas</dd></div><div><dt>Ctrl/Cmd + F</dt><dd>Search events</dd></div><div><dt>Ctrl/Cmd + S</dt><dd>Save project</dd></div><div><dt>Ctrl/Cmd + Z</dt><dd>Undo</dd></div><div><dt>Ctrl/Cmd + Shift + Z</dt><dd>Redo</dd></div><div><dt>Escape</dt><dd>Clear selection/search</dd></div></dl><button class="drawer-action shortcut-print" id="printHotkeys">Print shortcut list</button></div>
+  </aside>
+
+  <aside class="outline-list-panel" id="outlinePanel" aria-hidden="true">
+    <div class="drawer-head outline-panel-head"><strong>Diegetic timeline</strong><div class="outline-panel-actions"><button id="outlineListSettings" aria-label="List appearance settings" title="List appearance settings">⚙</button><button id="outlineDockToggle" aria-label="Undock diegetic list" title="Dock or undock list" aria-pressed="true">◲</button><button id="outlineClose" aria-label="Close diegetic list" title="Close">×</button></div></div>
+    <div class="outline-list-settings" id="outlineListSettingsPanel" hidden>
+      <label>Opacity <output id="outlineOpacityValue">100%</output><input id="outlineOpacity" type="range" min="30" max="100" value="100"></label>
+      <label>Background <input id="outlineBackground" type="color" value="#fbfaf7"></label>
+      <label>Text <input id="outlineTextColor" type="color" value="#252724"></label>
+      <label>Selection <input id="outlineSelectionColor" type="color" value="#e56745"></label>
+    </div>
+    <p class="outline-intro">Events numbered in diegetic order and grouped by the current outline.</p>
+    <div class="outline-list-content" id="outlineListContent"></div>
+  </aside>
+
+  <div class="structure-menu" id="structureMenu" hidden>
+    <div class="structure-menu-head"><strong>Structure point</strong><button id="structureMenuClose" aria-label="Close">×</button></div>
+    <label>Label<input id="structureLabelInput"></label>
+    <label>Color<input id="structureColorInput" type="color" value="#e56745"></label>
+    <label>Text color<input id="structureTextColorInput" type="color" value="#252724"></label>
+    <label>Text size<input id="structureTextSizeInput" type="number" min="8" max="36" value="10"></label>
+    <div class="popover-checks"><label><input id="structureBoldInput" type="checkbox"> Bold</label><label><input id="structureItalicInput" type="checkbox"> Italic</label></div>
+    <label>Position<input id="structureTimeInput" type="number" step="0.01"></label>
+    <button id="structurePointApply">Apply changes</button>
+    <button class="danger" id="structurePointDelete">Delete point</button>
+  </div>
+
+  <div class="note-menu" id="noteMenu" hidden>
+    <div class="structure-menu-head"><strong>Edit text</strong><button id="noteMenuClose" aria-label="Close">×</button></div>
+    <label>Text<textarea id="noteTextInput" rows="4"></textarea></label>
+    <div class="timeline-menu-grid"><label>Color<input id="noteColorInput" type="color" value="#545750"></label><label>Size<input id="noteSizeInput" type="number" min="8" max="48" value="12"></label></div>
+    <div class="popover-checks"><label><input id="noteBoldInput" type="checkbox"> Bold</label><label><input id="noteItalicInput" type="checkbox"> Italic</label></div>
+    <button id="noteApply">Apply changes</button>
+    <button class="danger" id="noteDelete">Delete text</button>
+  </div>
+
+  <main class="workspace">
+    <button class="panel-toggle left-toggle" id="leftPanelToggle" aria-label="Hide timelines panel" title="Hide timelines panel">‹</button>
+    <aside class="sidebar">
+      <section>
+        <div class="section-head"><span>TIMELINES</span><span class="count" id="timelineCount">3</span></div>
+        <div id="timelineList"></div>
+        <button class="add-row" id="addTimeline"><span>＋</span> Add timeline</button>
+        <div class="timeline-menu" id="timelineMenu" hidden>
+          <div class="timeline-menu-head"><strong>Edit timeline</strong><button id="timelineMenuClose" aria-label="Close">×</button></div>
+          <label>Name<input id="timelineNameInput"></label>
+          <label>Color<input id="timelineColorInput" type="color"></label>
+          <div class="timeline-menu-grid">
+            <label>Stroke<select id="timelineWidthInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option><option value="10">10 px</option><option value="12">12 px</option><option value="16">16 px</option><option value="20">20 px</option><option value="24">24 px</option><option value="30">30 px</option></select></label>
+            <label>Opacity<input id="timelineOpacityInput" type="number" min="0" max="100" step="5"></label>
+          </div>
+          <label>Line style<select id="timelineDashInput"><option value="solid">Solid</option><option value="dashed">Dashed</option></select></label>
+          <div class="popover-subhead">NAME STYLE</div>
+          <div class="timeline-menu-grid"><label>Text color<input id="timelineTextColorInput" type="color"></label><label>Text size<input id="timelineTextSizeInput" type="number" min="8" max="36" value="11"></label></div>
+          <div class="popover-checks"><label><input id="timelineBoldInput" type="checkbox"> Bold</label><label><input id="timelineItalicInput" type="checkbox"> Italic</label></div>
+          <button class="timeline-save" id="timelineSave">Apply changes</button>
+          <button class="timeline-delete" id="timelineDelete">Delete timeline</button>
+        </div>
+      </section>
+    </aside>
+
+    <section class="canvas-shell" id="canvasShell">
+      <div class="floating-tools">
+        <button class="toolbar-grip" id="toolbarGrip" aria-label="Move toolbar" title="Drag toolbar">⠿</button>
+        <button class="tool active" data-tool="pan" title="Pan"><svg viewBox="0 0 24 24"><path d="M8 11V7a1.5 1.5 0 0 1 3 0v3-5a1.5 1.5 0 0 1 3 0v5-3a1.5 1.5 0 0 1 3 0v4-2a1.5 1.5 0 0 1 3 0v4c0 5-3 8-8 8-3 0-5-2-7-5l-2-3a1.6 1.6 0 0 1 2.5-2z"/></svg></button>
+        <button class="tool" data-tool="marquee" title="Rectangle select"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="1" stroke-dasharray="3 2"/></svg></button>
+        <button class="tool" data-tool="group" title="Group select · Alt-drag to stretch"><b>◇</b></button>
+        <button class="tool" data-tool="event" title="Add event"><svg viewBox="0 0 24 24"><path d="M12 4v16M7 8h10M8 17h8"/></svg></button>
+        <button class="tool" data-tool="note" title="Add note"><b>T</b></button>
+        <button class="tool selected-lock-tool lock-action" id="selectedLockTool" title="Lock selected event" aria-label="Lock selected event" aria-disabled="true">🔒</button>
+        <span></span>
+        <button class="tool spread-tool" id="spreadProject" title="Spread project and chronological scale" aria-label="Spread entire project">↔</button>
+        <button class="tool spread-tool" id="stretchPlot" title="Stretch plot without changing chronological scale or grid" aria-label="Stretch plot only">⇔</button>
+        <div class="spread-control" id="spreadControl" hidden><input id="spreadRange" type="range" min="0.5" max="16" step="0.01" value="1" aria-label="Horizontal project spread"><output id="spreadValue">100%</output></div>
+        <button class="tool" id="undoButton" title="Undo" aria-label="Undo" disabled>↶</button>
+      </div>
+      <div class="selection-rectangle" id="selectionRectangle" hidden></div>
+      <div class="zoom-controls"><button id="zoomOut">−</button><span id="zoomLabel">100%</span><button id="zoomIn">＋</button><button id="fitView">⌗</button></div>
+      <div class="canvas" id="canvas">
+        <div class="world" id="world">
+          <div class="time-zero-line" aria-label="Chronological time zero"></div>
+          <div class="ruler" id="ruler"><i class="playhead"></i></div>
+          <div id="lines"></div>
+          <svg class="diegetic-connections" id="diegeticConnections" aria-label="Diegetic event connections"></svg>
+          <div id="events"></div>
+          <svg class="diegetic-connections selected-diegetic-connection" id="selectedDiegeticConnection" aria-label="Selected event diegetic connection"></svg>
+          <div id="notes"></div>
+          <div class="diegetic-axis" id="diegeticAxis" aria-label="Diegetic timeline"></div>
+          <div class="structure-points" id="structurePoints"></div>
+        </div>
+      </div>
+    </section>
+
+    <button class="panel-toggle right-toggle" id="rightPanelToggle" aria-label="Hide inspector panel" title="Hide inspector panel">›</button>
+    <aside class="inspector" id="inspector">
+      <div class="inspector-title"><span id="inspectKind">EVENT</span><button id="closeInspector">×</button></div>
+      <div class="field"><label>Label</label><input id="labelInput" value="First contact"></div>
+      <div class="field"><label>Timeline</label><select id="timelineSelect"><option>Main plot</option><option>Dr. Vale</option><option>Echo signal</option></select></div>
+      <div class="field"><label>Stacking</label><select id="stackModeSelect"><option value="auto">Auto</option><option value="manual">Manual (Ctrl/Cmd-drag left/right)</option></select></div>
+      <div class="field event-lock-field"><label>Movement lock</label><label class="property-switch" for="eventLockInput"><input id="eventLockInput" type="checkbox"><span class="switch-track" aria-hidden="true"><i></i></span><strong id="eventLockState">Unlocked</strong></label></div>
+      <div class="field-grid"><div class="field"><label id="positionLabel">Day</label><input id="dayInput" type="number" step="0.01" value="8"></div><div class="field"><label>Time</label><input id="eventTimeInput" type="time" value="14:30"></div></div>
+      <div class="field"><label>Description</label><textarea id="descriptionInput" rows="4" placeholder="Describe what happens at this event…"></textarea></div>
+      <div class="divider"></div>
+      <div class="subhead">APPEARANCE</div>
+      <div class="field-grid"><div class="field"><label>Stroke color</label><div class="color-field"><input id="colorInput" type="color" value="#e56745"><span>#E56745</span></div></div><div class="field"><label>Box fill</label><div class="color-field"><input id="fillColorInput" type="color" value="#fbfaf7"><span>#FBFAF7</span></div></div></div>
+      <div class="field-grid"><div class="field"><label>Line</label><select id="dashInput"><option>Solid</option><option>Dashed</option><option>Dotted</option></select></div><div class="field"><label>Vertical line size</label><select id="eventLineStrokeInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></div></div>
+      <div class="field"><label>Box stroke size</label><select id="eventStrokeInput"><option value="1">1 px</option><option value="2">2 px</option><option value="3">3 px</option><option value="4">4 px</option><option value="6">6 px</option><option value="8">8 px</option></select></div>
+      <div class="field"><label>Opacity</label><input id="opacityInput" value="100%"></div>
+      <div class="field-grid"><div class="field"><label>Font</label><select id="fontInput"><option value="Manrope">Manrope</option><option value="DM Mono">Mono</option></select></div><div class="field"><label>Size</label><select id="fontSizeInput"><option value="13">13 px</option><option value="15">15 px</option><option value="18">18 px</option></select></div></div>
+      <div class="text-style-controls"><label><input id="boldInput" type="checkbox"><strong>B</strong> Bold</label><label><input id="italicInput" type="checkbox"><em>I</em> Italic</label></div>
+      <button class="diegetic-btn secondary" id="appearanceApply">Apply appearance</button>
+      <div class="divider"></div>
+      <div class="subhead">DIEGETIC CONNECTION</div>
+      <p class="field-help">Connect this event to its perceived position in story time.</p>
+      <button class="diegetic-btn" id="toggleDiegetic">Add diegetic line</button>
+      <div class="field" id="diegeticStyleField" hidden><label>Diegetic line type</label><select id="diegeticStyleSelect"><option value="vertical">Vertical fixed</option><option value="curve">Bezier curve</option></select></div>
+      <div class="field"><label>Structure template</label><select id="structureTemplate"><option value="none">None</option><option value="three-act">Three-act structure</option><option value="hero">Hero’s journey</option><option value="save-cat">Save the Cat</option><option value="custom">Custom</option><option value="print-bw">Monochrome B&W print</option></select></div>
+      <button class="diegetic-btn secondary" id="addStructurePoint">＋ Add structure point</button>
+      <button class="delete-btn" id="deleteEvent">Delete event</button>
+    </aside>
+  </main>
+  <script src="/static/app.js?v=20260808-39"></script>
+</body>
+</html>
